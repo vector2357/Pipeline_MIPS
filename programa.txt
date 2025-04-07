@@ -1,9 +1,18 @@
-add $s0, $s0, $s1
-mul $s2, $s0, $s3
-sub $s4, $s4, $s2
-beq $s4, $s0, loop
-j end
-loop: add $s1, $s1, $s1
-j start
-end: nop
-start: nop
+addi $s1, $s1, 1
+sw $s1, 0($s1)
+addi $s1, $s1, 6
+addi $s29, $s29, 1
+addi $s30, $s30, 2
+fib: lw $s3, 0($s28)
+lw $s4, 0($s29)
+add $s2, $s3, $s4
+sw $s2, 0($s30)
+addi $s28, $s28, 1
+addi $s29, $s29, 1
+addi $s30, $s30, 1
+beq $s1, $s30, end
+j fib
+end: lw $s3, 0($s28)
+lw $s4, 0($s29)
+add $s2, $s3, $s4
+sw $s2, 0($s30)

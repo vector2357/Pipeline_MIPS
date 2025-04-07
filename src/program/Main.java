@@ -87,8 +87,7 @@ public class Main {
             System.out.print(Pipeline.YELLOW + "\n    * pressione alguma tecla e enter para continuar..." + Pipeline.RESET);
             
             String tecla = entrada.next();
-            
-            System.out.println(Pipeline.desvios.get("end:"));
+
             // Chamada do método de simulação do Pipeline
             pipeline.simulate(program, auto);
         }

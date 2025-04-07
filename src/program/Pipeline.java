@@ -152,7 +152,7 @@ public class Pipeline {
 		        		
 		        		// Verifica Hazard e seta como NULL o estágio de IF quando retorna true 
 		        		if (hasHazard(program.get(pc))) {
-		    	            stages[0].setName(null);
+		    	            stages[0] = new Instruction();
 		    	            stalls++;
 		    	        }
 		    	        else {
@@ -161,8 +161,9 @@ public class Pipeline {
 		    	        }
 		        	}
 		        	else {
+		        		stages[1].setPredict(false);
 		        		if (hasHazard(currentInstr)) {
-				            stages[0].setName(null);
+				            stages[0] = new Instruction();
 				            stalls++;
 				        }
 				        else {
@@ -173,7 +174,7 @@ public class Pipeline {
 		        }
 		        else {
 			        if (hasHazard(currentInstr)) {
-			            stages[0].setName(null);
+			            stages[0] = new Instruction();
 			            stalls++;
 			        }
 			        else {
@@ -244,6 +245,30 @@ public class Pipeline {
 	        if (hazardType == HazardType.STALL) {
 	        	temp += 2;
 	        }
+	        else {
+	        	// Escrita na memória na fase de MEM
+		        if (stages[3].getName() != null) {
+		        	switch (stages[3].getName()) {
+		        		
+		        	case "SW":
+		        		stages[3].SW();
+		        		break;
+		        		
+		        	}
+		        }
+	        }
+	        
+	        // Escrita da Memória para o registrador no LW
+	        if (temp == 2) temp=1;
+	        if (stages[3+temp].getName() != null) {
+	        	switch (stages[3+temp].getName()) {
+	        		
+	        	case "LW":
+	        		stages[3+temp].LW();
+	        		break;
+	        		
+	        	}
+	        }
 	        
 	        // Escrita no registrador na fase de WB
 	        if (stages[2+temp].getName() != null) {
@@ -267,24 +292,21 @@ public class Pipeline {
 	        		}
 	        		break;
 	        		
-	        	case "LW":
-	        		if (temp == 2) temp = 1;
-	        		stages[3+temp].LW();
-	        		break;
-	        		
 	        	}
 	        }
 	        
-	        // Escrita na memória na fase de MEM
-	        if (stages[3].getName() != null) {
-	        	switch (stages[3].getName()) {
-	        		
-	        	case "SW":
-	        		stages[3].SW();
-	        		break;
-	        		
-	        	}
-	        }
+	        if (temp == 1) {
+		        // Escrita na memória na fase de MEM
+		        if (stages[3].getName() != null) {
+		        	switch (stages[3].getName()) {
+		        		
+		        	case "SW":
+		        		stages[3].SW();
+		        		break;
+		        		
+		        	}
+		        }
+	    	}
 	        
 	        // Imprime no terminal o Pipeline e avança o mesmo
 	        printPipelineState(program);
