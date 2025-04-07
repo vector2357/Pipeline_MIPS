@@ -1,0 +1,51 @@
+# Arquivos compilados do Java
+*.class
+
+# Arquivos de build e diretórios
+/target/
+/build/
+/out/
+/bin/
+/dist/
+
+# Arquivos de IDE
+.settings/
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+
+# Arquivos do Maven (geralmente não versionados)
+pom.xml.versionsBackup
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Arquivos do Gradle
+.gradle/
+build/
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.bak
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente
+.env
+*.env
+
+# Arquivos de configuração local
+*.properties
+*.config
+
+# Arquivos do Eclipse
+.metadata/
