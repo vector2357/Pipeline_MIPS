@@ -8,6 +8,14 @@ import java.util.Scanner;
 
 import enums.HazardType;
 
+/*
+ * Projeto Simulador de Pipeline em processador MIPS
+ * 
+ * TURMA:       Arquitetura de Computadores II - A02
+ * ALUNO:       Victor Hugo Resende Marinho
+ * LINK GITHUB: https://github.com/vector2357/Pipeline_MIPS#
+*/
+
 public class Main {
 	private static final String pipe = "\n\t\t---------------------------------------------------------------------------\n"
 			+ "\t\t    .______    __  .______    _______  __       __  .__   __.  _______ \r\n"

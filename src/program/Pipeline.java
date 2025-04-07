@@ -133,7 +133,7 @@ public class Pipeline {
 	    		|| stages[2].getName() != null || stages[3].getName() != null
 	    		|| stages[4].getName() != null) {
 	    	
-	    	if (pc < program.size()) {
+	    	if (pc < program.size() && stages[0].getName()==null) {
 	    		// Captura instrução atual do contador de programa
 		        Instruction currentInstr = program.get(pc);
 		        
@@ -182,7 +182,7 @@ public class Pipeline {
 			        }
 		        }
 	    	}
-	        
+	    	
 	        if (stages[3].getName() != null && stages[3].getName().equals("BEQ")) {
 	        	// Verificação de ocorrência real de desvio no estágio EX
 	        	if (stages[3].BEQ()) {
@@ -214,7 +214,7 @@ public class Pipeline {
 	        				stages[i] = new Instruction();
 	        			}
 	        			pc = stages[3].getPc()+1;
-	        			stages[0] = program.get(pc);
+	        			if (pc < program.size()) stages[0] = program.get(pc);
 	        			pc++;
 	        		}
 	        		else {
@@ -268,7 +268,8 @@ public class Pipeline {
 	        		break;
 	        		
 	        	case "LW":
-	        		stages[2+temp].LW();
+	        		if (temp == 2) temp = 1;
+	        		stages[3+temp].LW();
 	        		break;
 	        		
 	        	}

@@ -187,3 +187,25 @@ Foram implementadas exceções personalizadas para simular 2 tipos de erros que 
 
     ![alt text](images/Programa2_Forwarding.png)
 -- -
+3. **Programa 3: Loop com Dependências**
+
+    ```asm
+    add $s0, $s0, $s1
+    mul $s2, $s0, $s3
+    sub $s4, $s4, $s2
+    beq $s4, $s0, loop
+    j end
+    loop: add $s1, $s1, $s1
+    j start
+    end: nop
+    start: nop
+    ```
+
+    Resultados com **STALL:**
+
+    ![alt text](images/Programa3_Stall.png)
+
+    Resultados com **FORWARDING:**
+
+    ![alt text](images/Programa3_Forwarding.png)
+-- -
