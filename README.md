@@ -209,3 +209,38 @@ Foram implementadas exceções personalizadas para simular 2 tipos de erros que 
 
     ![alt text](images/Programa3_Forwarding.png)
 -- -
+4. **Programa 4: Sequência de Fibonacci**
+
+    Programa que calcula os 7 primeiros termos da sequência de Fibonacci e armazena resultado na respectiva posição da memória.
+
+    > **Observação:** para alteração da quantidade de termos, basta alterar valor imediato da linha 3 do programa.
+
+    ```asm
+    addi $s1, $s1, 1
+    sw $s1, 0($s1)
+    addi $s1, $s1, 6
+    addi $s29, $s29, 1
+    addi $s30, $s30, 2
+    fib: lw $s3, 0($s28)
+    lw $s4, 0($s29)
+    add $s2, $s3, $s4
+    sw $s2, 0($s30)
+    addi $s28, $s28, 1
+    addi $s29, $s29, 1
+    addi $s30, $s30, 1
+    beq $s1, $s30, end
+    j fib
+    end: lw $s3, 0($s28)
+    lw $s4, 0($s29)
+    add $s2, $s3, $s4
+    sw $s2, 0($s30)
+    ```
+
+    Resultados com **STALL:**
+
+    ![alt text](images/Fibonacci_Stall.png)
+
+    Resultados com **FORWARDING:**
+
+    ![alt text](images/Fibonacci_Forwarding.png)
+-- -
